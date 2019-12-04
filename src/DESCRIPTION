@@ -1,0 +1,16 @@
+Vantage-Comment:
+    ************************************************
+    * This file was generated from DESCRIPTION.tpl *
+    * Please don't modify it directly!             *
+    ************************************************
+Package: vantage.tpl
+Type: Package
+Version: 0.1.0
+Encoding: UTF-8
+LazyData: true
+Imports:
+    glue,
+    vtg
+Remotes:
+    mellesies/vtg
+RoxygenNote: 7.0.0
