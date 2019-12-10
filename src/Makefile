@@ -1,5 +1,8 @@
 # `make` is expected to be called from the directory that contains
-# `Makefile`
+# this Makefile
+
+# PKG_NAME is based on the name of the folder that holds this code
+# (i.e. the name of the directory that contains 'src')
 $(eval PKG_NAME := $(shell Rscript -e "cat(basename(dirname(getwd())))"))
 
 HOST := 'harbor.distributedlearning.ai'
