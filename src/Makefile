@@ -15,6 +15,10 @@ echo:
 	@echo "package name: ${PKG_NAME}"
 	@echo "  image name: ${IMAGE}"
 	@echo "  tag: ${TAG}"
+# ifndef ENV
+# 	$(error ENV is undefined)
+# endif
+# 	@echo "  ENV: ${ENV}"
 
 build: install_deps document
 	@echo "*** Building \"$(PKG_NAME)\" ***"

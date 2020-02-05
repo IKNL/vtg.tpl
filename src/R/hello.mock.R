@@ -6,7 +6,7 @@ hello.mock <- function(name, splits=5) {
         datasets[[k]] <- data.frame()
     }
 
-    client <- vantage.infrastructure::MockClient(datasets)
+    client <- vtg::MockClient(datasets)
     results <- hello(client, name)
     return(results)
 }
