@@ -24,5 +24,5 @@ RUN touch database
 
 # Tell docker to execute `docker.wrapper()` when the image is run.
 ENV PKG_NAME=${PKG_NAME}
-CMD Rscript -e "vtg::docker.wrapper('$PKG_NAME')
+CMD Rscript -e "vtg::docker.wrapper('$PKG_NAME')"
 

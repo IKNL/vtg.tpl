@@ -1,8 +1,9 @@
 packages <- c(
-  "httr",
-  "rjson",
-  "namespace",
-  "devtools"
+    "httr",
+    "rjson",
+    "dplyr",
+    "namespace",
+    "devtools"
 )
 
 install.packages(packages)
