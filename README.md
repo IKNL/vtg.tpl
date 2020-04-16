@@ -1,5 +1,5 @@
 # This is a template repository!
-You can create it to jumpstart your own algorithm for the [Vantage6](https://github.com/IKNL/VANTAGE6) federated infrastructure.
+You can create it to jumpstart your own algorithm for the [vantage6](https://github.com/IKNL/VANTAGE6) federated infrastructure.
 
 ## How to use this template?
 
