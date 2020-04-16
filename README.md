@@ -6,7 +6,7 @@ You can create it to jumpstart your own algorithm for the [vantage6](https://git
 You can use this repository as follows:
 1. Make sure the R package `devtools` is installed.
 2. Fork this repository or download the files as ZIP archive
-3. Rename the folder containing the files to the name of your package. This is important, because the `Makefile` uses this folder name to infer your package name (and any docker images that follow from it). Alternatively, you can manually update the `Makefile`.
+3. Rename the folder containing the files to the name of your package. This is important, because the `Makefile` (located in `src/`) uses this folder name to infer your package name (and any docker images that follow from it). Alternatively, you can manually update the `Makefile`.
 4. Add functions you want users to access to the `src/R` directory (as you normally would for any package).
 5. Add functions you want to run on a node as you normally would, but prefix their names with `RPC_`.
 6. Build your package
