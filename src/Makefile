@@ -5,30 +5,28 @@
 # (i.e. the name of the directory that contains 'src')
 $(eval PKG_NAME := $(shell Rscript -e "cat(basename(dirname(getwd())))"))
 
-HOST := 'harbor.distributedlearning.ai'
-IMAGE := "vantage/${PKG_NAME}"
-TAG := "test"
-
-all: install
+# These variables can be set as environment variables or as arguments to `make`
+HOST ?= harbor.distributedlearning.ai
+IMAGE ?= vantage/${PKG_NAME}
+TAG ?= trolltunga
+$(eval PWD := $(shell Rscript -e "cat(dirname(getwd()))"))
 
 echo:
 	@echo "package name: ${PKG_NAME}"
 	@echo "  image name: ${IMAGE}"
-	@echo "  tag: ${TAG}"
-# ifndef ENV
-# 	$(error ENV is undefined)
-# endif
-# 	@echo "  ENV: ${ENV}"
+	@echo "         tag: ${TAG}"
+	@echo "         pwd: ${PWD}"
+	@echo ""
 
-build: install_deps document
+build: install-deps document
 	@echo "*** Building \"$(PKG_NAME)\" ***"
 	@mkdir ../dist; cd ../dist; R CMD build ../src
 
-install_deps: DESCRIPTION
+install-deps: DESCRIPTION
 	@echo "*** Installing dependencies for \"$(PKG_NAME)\" ***"
 	@Rscript -e 'library(devtools)' -e 'install_deps(".")'
 
-install: install_deps document
+install: install-deps document
 	@echo "*** Installing package \"$(PKG_NAME)\" ***"
 	@R CMD INSTALL --no-multiarch --with-keep.source .
 
@@ -51,9 +49,9 @@ DESCRIPTION: DESCRIPTION.tpl
 document:
 	@Rscript -e "devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))"
 
-docker: DESCRIPTION docker_build docker_push
+docker: DESCRIPTION docker-build docker-push
 
-docker_build:
+docker-build:
 	@echo "************************************************************************"
 	@echo "* Building image '${IMAGE}:${TAG}' "
 	@echo "************************************************************************"
@@ -75,7 +73,7 @@ docker_build:
 	  -t ${HOST}/${IMAGE}:${TAG} \
 	  ../
 
-docker_push: docker_build
+docker-push: docker-build
 	docker push ${HOST}/${IMAGE}:${TAG}
 
 clean:
