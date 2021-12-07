@@ -8,7 +8,7 @@ You can use this repository as follows:
 2. Fork this repository or download the files as ZIP archive
 3. Rename the folder containing the files to the name of your package. This is important, because the `Makefile` (located in `src/`) uses this folder name to infer your package name (and any docker images that follow from it). Alternatively, you can manually update the `Makefile`.
 4. Add functions you want users to access to the `src/R` directory (as you normally would for any package).
-5. Add functions you want to run on a node as you normally would, but prefix their names with `RPC_`.
+5. Add functions you want to run on a node as you normally would, but prefix their names with `RPC_`. All `RPC_` functions take standard dataframe (use read.csv) as the first argument followed other arguments if need be.
 6. Build your package
   * From RStudio: Menu -> Build -> Build All (or use the appropiate shortcut)
   * From the command line: run `make` in the directory that contains the `Makefile`.
@@ -18,3 +18,10 @@ To make things easier for your users, you'll probably want to implement function
 
 The `R` package derived from this template uses a `Makefile` to build (see also https://www.r-bloggers.com/rstudio-and-makefiles-mind-your-options/). On Windows this might mean you have to install [RTools](https://cran.r-project.org/bin/windows/Rtools/), which includes `make` (through Cygwin). Alternatively, have a look at Windows Subsystem for Linux (WSL).
 
+## How to test the algorithms locally ?
+1. You can use the `hello.mock.R` as and example where you can use your `RPC_` function calling your algorithm.
+2. Then build the project from the RStudio menu Build -> Configure Build tools 
+ * set the Makefile directory to src
+ * set Additional arguments to `install install-deps`
+3. After this go to Session from RStudion and restart R
+4. Load an example local file that your algorithms expects and try to execute the `RPC_` function by calling for example vtg.<yourPackageName>::RPC_<function>(dataframe)
